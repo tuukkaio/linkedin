@@ -1,12 +1,18 @@
-if (request.message === 'fetchJobTitle') {
-  chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
-    chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['contentScript.js'] }, ([response]) => {
-      if (chrome.runtime.lastError) {
-        console.error(chrome.runtime.lastError);
-      } else {
-        sendResponse(response.result.jobTitle);
-      }
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.message === 'fetchJobTitle' || request.message === 'fetchJobDetails') {
+    chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
+      chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['contentScript.js'] }, ([response]) => {
+        if (chrome.runtime.lastError) {
+          console.error(chrome.runtime.lastError);
+        } else {
+          if (request.message === 'fetchJobTitle') {
+            sendResponse(response.result.jobTitle);
+          } else {
+            sendResponse(response.result.jobDetails);
+          }
+        }
+      });
     });
-  });
-  return true;
-}
+    return true;
+  }
+});
