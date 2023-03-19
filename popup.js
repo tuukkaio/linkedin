@@ -10,7 +10,8 @@
 
   writeCoverLetterButton.addEventListener('click', async () => {
     const tab = await getCurrentTab();
-    chrome.runtime.sendMessage({ action: 'fetchJobDetails', tabId: tab.id }, (response) => {
+      chrome.scripting.executeScript({ target: { tabId: tab.id }, function: fetchJobDetails }, (response) => {
+
       if (response && response.jobDetails) {
         generateCoverLetter(response.jobDetails).then((coverLetter) => {
           coverLetterText.value = coverLetter;
