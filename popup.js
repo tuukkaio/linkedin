@@ -16,16 +16,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
-  document.body.appendChild(div);
-
-  // Inject content.css into the page
-  const style = document.createElement('link');
-  style.rel = 'stylesheet';
-  style.type = 'text/css';
-  style.href = chrome.runtime.getURL('content.css');
-  (document.head || document.documentElement).appendChild(style);
-});
-
 async function getCurrentTab() {
   return new Promise((resolve) => {
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
@@ -73,4 +63,3 @@ function fetchJobDetails() {
 
   return { jobTitle, companyName, location, description };
 }
-
