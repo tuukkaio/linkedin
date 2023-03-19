@@ -1,19 +1,12 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  // Inject popup.html into the page
-  const response = await fetch(chrome.runtime.getURL('popup.html'));
-  const text = await response.text();
-  const div = document.createElement('div');
-  div.innerHTML = text;
-
-  const writeCoverLetterButton = div.querySelector('#write-cover-letter');
-  const coverLetterText = div.querySelector('#cover-letter-text');
+  const writeCoverLetterButton = document.querySelector('#write-cover-letter');
+  const coverLetterText = document.querySelector('#cover-letter-text');
 
   writeCoverLetterButton.addEventListener('click', async () => {
     const tab = await getCurrentTab();
-      chrome.scripting.executeScript({ target: { tabId: tab.id }, func: fetchJobDetails }, ([response]) => {
-
-      if (response && response.jobDetails) {
-        generateCoverLetter(response.jobDetails).then((coverLetter) => {
+    chrome.scripting.executeScript({ target: { tabId: tab.id }, func: fetchJobDetails }, ([response]) => {
+      if (response && response.result) {
+        generateCoverLetter(response.result).then((coverLetter) => {
           coverLetterText.value = coverLetter;
         });
       } else {
@@ -21,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
   });
+});
 
   document.body.appendChild(div);
 
