@@ -1,8 +1,17 @@
 body {
-  width: 30vw;
-  height: 100%;
   margin: 0;
   padding: 0;
+}
+
+#cover-letter-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30vw;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -3px 0px 5px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
 }
 
 button#write-cover-letter {
