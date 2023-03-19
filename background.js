@@ -6,9 +6,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           console.error(chrome.runtime.lastError);
         } else {
           if (request.message === 'fetchJobTitle') {
-            sendResponse(response.result.jobTitle);
+            sendResponse(response.result && response.result.jobTitle ? response.result.jobTitle : null);
           } else {
-            sendResponse(response.result.jobDetails);
+            sendResponse(response.result && response.result.jobDetails ? response.result.jobDetails : null);
           }
         }
       });
