@@ -3,7 +3,7 @@ body {
   padding: 0;
 }
 
-#cover-letter-sidebar {
+#write-cover-letter {
   position: static;
   top: 0;
   right: 0;
@@ -20,7 +20,7 @@ button#write-cover-letter {
   margin-bottom: 10px;
 }
 
-textarea#cover-letter-text {
+textarea#write-cover-letter {
   width: 98%;
   height: 90%;
   border: 1px solid #ccc;
