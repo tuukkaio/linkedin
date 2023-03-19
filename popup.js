@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   writeCoverLetterButton.addEventListener('click', async () => {
     const tab = await getCurrentTab();
-    chrome.tabs.executeScript(tab.id, { code: `(${fetchJobDetails.toString()})()` }, ([response]) => {
+    chrome.runtime.sendMessage({ message: 'fetchJobDetails', func: fetchJobDetails.toString() }, (response) => {
       if (response && response.result) {
         generateCoverLetter(response.result).then((coverLetter) => {
           coverLetterText.value = coverLetter;
