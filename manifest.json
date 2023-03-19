@@ -19,12 +19,12 @@
     "https://www.linkedin.com/*"
   ],
   "content_scripts": [
-    {
-      "matches": ["https://www.linkedin.com/jobs/*"],
-      "js": ["popup.js"],
-      "css": ["content.css"]
-    }
-  ],
+  {
+    "matches": ["https://www.linkedin.com/jobs/*"],
+    "js": ["contentScript.js"],
+    "css": ["content.css"]
+  }
+],
   "background": {
     "service_worker": "background.js"
   }
