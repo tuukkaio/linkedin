@@ -1,4 +1,4 @@
-(async () => {
+document.addEventListener('DOMContentLoaded', async () => {
   // Inject popup.html into the page
   const response = await fetch(chrome.runtime.getURL('popup.html'));
   const text = await response.text();
@@ -30,7 +30,7 @@
   style.type = 'text/css';
   style.href = chrome.runtime.getURL('content.css');
   (document.head || document.documentElement).appendChild(style);
-})();
+});
 
 async function getCurrentTab() {
   return new Promise((resolve) => {
