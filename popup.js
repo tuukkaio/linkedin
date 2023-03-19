@@ -2,10 +2,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   const writeCoverLetterButton = document.querySelector('#write-cover-letter');
   const coverLetterText = document.querySelector('#cover-letter-text');
 
+  // Fetch the job title and update the button text
+  chrome.runtime.sendMessage({ message: 'fetchJobTitle' }, (jobTitle) => {
+    if (jobTitle) {
+      writeCoverLetterButton.innerHTML = `Write Cover Letter: <strong>${jobTitle}</strong>`;
+    }
+  });
+
   writeCoverLetterButton.addEventListener('click', async () => {
-    chrome.runtime.sendMessage({ message: 'fetchJobDetails' }, (response) => {
-      if (response && response.result) {
-        generateCoverLetter(response.result).then((coverLetter) => {
+    chrome.runtime.sendMessage({ message: 'fetchJobDetails' }, (jobDetails) => {
+      if (jobDetails) {
+        generateCoverLetter(jobDetails).then((coverLetter) => {
           coverLetterText.value = coverLetter;
         });
       } else {
