@@ -1,29 +1,30 @@
 body {
+  width: 400px;
+  height: 600px;
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+#popup-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 #write-cover-letter {
-  position: static;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 500px;
-  background-color: #ffffff;
-  box-shadow: -3px 0px 5px rgba(0, 0, 0, 0.1);
-  z-index: 9999;
+  margin: 10px;
+  padding: 10px;
+  font-size: 1em;
+  cursor: pointer;
 }
 
-button#write-cover-letter {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-textarea#write-cover-letter {
-  width: 98%;
-  height: 90%;
-  border: 1px solid #ccc;
-  padding: 5px;
+#cover-letter-text {
+  flex: 1;
+  margin: 10px;
+  padding: 10px;
   resize: none;
+  border: 1px solid #ccc;
+  font-size: 0.9em;
+  font-family: Arial, sans-serif;
 }
